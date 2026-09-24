@@ -129,7 +129,7 @@
         <p class="return-label">Need to return to Wareesan Office?</p>
         <a
           class="map-btn office-btn"
-          href="https://www.google.com/maps/dir/?api=1&destination=Wareesan%3A%20Muslim%20Cemetery%20Exhumation%20Office%2C%207%20Chinese%20Cemetery%20Path%203%2C%20Singapore%20718773&travelmode=walking&dir_action=navigate"
+          href="https://www.google.com/maps/dir/?api=1&destination=Wareesan%3A%20Muslim%20Cemetery%20Exhumation%20Office%2C%207%20Chinese%20Cemetery%20Path%203%2C%20Singapore%20718773&travelmode=driving&dir_action=navigate"
           target="_blank"
           rel="noopener noreferrer"
         >Get directions to Wareesan Office</a>
@@ -171,7 +171,7 @@
     function mapsDirectionsUrl(destination) {
       return "https://www.google.com/maps/dir/?api=1&destination=" +
         encodeURIComponent(destination) +
-        "&travelmode=walking&dir_action=navigate";
+        "&travelmode=driving&dir_action=navigate";
     }
 
     const container = document.getElementById("blockButtons");
@@ -182,7 +182,7 @@
       a.href = mapsDirectionsUrl(destination);
       a.target = "_blank";
       a.rel = "noopener noreferrer";
-      a.setAttribute("aria-label", `Get walking directions to ${label}`);
+      a.setAttribute("aria-label", `Get driving directions to ${label}`);
       container.appendChild(a);
     });
   </script>
