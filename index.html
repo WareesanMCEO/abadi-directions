@@ -16,6 +16,10 @@ h1{text-align:center;margin:4px 0 8px;font-size:2.1rem}
 .section-title{margin:24px 0 10px;font-size:1rem;font-weight:800;color:#1f5b46;text-align:left;letter-spacing:.03em}
 .office{margin-top:26px;padding-top:22px;border-top:2px solid #d9d5ca;text-align:center}
 .office .btn{background:#7a5a2f}
+.notice{background:#eef6f2;border:1px solid #b8d4c8;border-radius:12px;padding:14px 16px;margin:0 0 20px;font-size:.95rem;line-height:1.45;color:#29483d}
+.notice strong{color:#1f5b46}
+.notice p{margin:0 0 10px}
+.notice p:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -24,26 +28,31 @@ h1{text-align:center;margin:4px 0 8px;font-size:2.1rem}
 <p class="top">PUSARA ABADI</p>
 <h1>Block Directions</h1>
 <p class="info">Tap the block you want to visit.</p>
+<div class="notice">
+<p><strong>Route Notice / Makluman Laluan</strong></p>
+<p><strong>To all Blocks &amp; Shrouding Station (N-1-15):</strong><br>Please proceed via <strong>Point A</strong> first, followed by <strong>Point B</strong>, before continuing to your selected location.<br><em>Ke semua Blok &amp; Stesen Pengkafanan (N-1-15): Sila melalui Point A terlebih dahulu, diikuti Point B, sebelum meneruskan perjalanan ke lokasi pilihan anda.</em></p>
+<p><strong>Return to Wareesan Office:</strong><br>Please proceed via the two designated bus stops — <strong>Point C</strong> first, followed by <strong>Point D</strong> — before continuing to Wareesan Office.<br><em>Untuk kembali ke Pejabat Wareesan: Sila melalui dua perhentian bas yang ditetapkan — Point C dahulu, diikuti Point D — sebelum meneruskan perjalanan ke Pejabat Wareesan.</em></p>
+</div>
 <p class="section-title">PRINCIPAL BLOCKS / Blok-blok Utama</p>
 <div class="list">
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3855513%2C103.6897388&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 23</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3867964%2C103.6897240&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 24</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3843695%2C103.6920897&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 25</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3830843%2C103.6920870&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 26</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3862219%2C103.6880357&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-429</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3831864%2C103.6932036&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-1</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3843819%2C103.6932894&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-2</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3855513%2C103.6897388&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 23</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3867964%2C103.6897240&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 24</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3843695%2C103.6920897&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 25</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3830843%2C103.6920870&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 26</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3862219%2C103.6880357&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-429</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3831864%2C103.6932036&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-1</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3843819%2C103.6932894&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-2</a>
 </div>
 <p class="section-title">SUPPLEMENTARY BLOCKS / Blok-blok tambahan</p>
 <div class="list">
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3831751%2C103.6909204&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 17</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3861642%2C103.6932650&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-3</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3888885%2C103.6932405&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-4</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3831751%2C103.6909204&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block 17</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3861642%2C103.6932650&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-3</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3888885%2C103.6932405&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Block N-1-4</a>
 </div>
 <p class="section-title">OTHER LOCATIONS / Lokasi-lokasi lain</p>
 <div class="list">
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3847024%2C103.6889977&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Shrouding Station — N-1-15</a>
-<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=1.3732278%2C103.6943606&waypoints=1.373591%2C103.685493%7C1.370355%2C103.688004&travelmode=driving">Wareesan Office</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Route reminder: Please pass through Point A first, then Point B, before proceeding to your selected location.\n\nPeringatan laluan: Sila melalui Point A dahulu, kemudian Point B, sebelum ke lokasi pilihan anda.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3847024%2C103.6889977&waypoints=1.3710219%2C103.685368%7C1.3824528%2C103.6841783&travelmode=driving">Shrouding Station — N-1-15</a>
+<a class="btn" target="_blank" rel="noopener" onclick="return confirm('Return route reminder: Please pass through the two designated bus stops — Point C first, then Point D — before proceeding to Wareesan Office.\n\nPeringatan laluan pulang: Sila melalui dua perhentian bas yang ditetapkan — Point C dahulu, kemudian Point D — sebelum ke Pejabat Wareesan.')" href="https://www.google.com/maps/dir/?api=1&destination=1.3732278%2C103.6943606&waypoints=1.373591%2C103.685493%7C1.370355%2C103.688004&travelmode=driving">Wareesan Office</a>
 </div>
 </section>
 </main>
