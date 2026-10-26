@@ -338,13 +338,13 @@ const WAYPOINTS = Object.freeze({
   D: "1.370355,103.688004"
 });
 
-// APPROXIMATE operational GPS screening zones, NOT an official surveyed boundary.
-// Coordinates of all original destinations and waypoints above are unchanged.
-// Inside the conservative inner zone => internal route.
-// Well beyond the outer zone => outside route. Between them => manual choice.
-// Validate boundary decisions with real on-site GPS readings before public launch.
-const INNER_ZONE = Object.freeze({ south: 1.3822, north: 1.3901, west: 103.6857, east: 103.6945 });
-const OUTER_ZONE = Object.freeze({ south: 1.3809, north: 1.3915, west: 103.6844, east: 103.6960 });
+// Provisional Pusara Abadi geofence from the user's closed KML outline.
+// Coordinates are [longitude, latitude], exactly as supplied in the KML conversion.
+// This boundary controls GPS area detection ONLY. It does not alter any
+// destination, waypoint, Google Maps path, or the three existing map views.
+// Not a surveyed boundary; staff should validate it against real GPS readings.
+// A reference copy is included as PUSARA_ABADI_GEOFENCE.geojson.
+const PUSARA_ABADI_BOUNDARY = Object.freeze([[103.6854534,1.3855737],[103.6892872,1.3897972],[103.6897735,1.390026],[103.6914997,1.3902834],[103.6925297,1.3903883],[103.6939602,1.3903406],[103.6940512,1.3857012],[103.6940321,1.3840423],[103.6940048,1.3826253],[103.6940086,1.3825656],[103.6910379,1.3825704],[103.6871422,1.3825275],[103.6843442,1.3825638],[103.6843108,1.3825971],[103.6842965,1.3831501],[103.6843966,1.3837078],[103.6845731,1.3842656],[103.6847686,1.384747],[103.6849879,1.3851332],[103.6854534,1.3855737]]);
 const MAX_ACCEPTED_ACCURACY_METRES = 100;
 const GEO_OPTIONS = Object.freeze({ enableHighAccuracy: true, timeout: 12000, maximumAge: 0 });
 
@@ -437,26 +437,54 @@ function setStartMode(mode) {
   document.getElementById("startChevron").textContent = "⌄";
 }
 
-function withinWithAccuracy(zone, lat, lng, accuracy) {
-  const latPad = accuracy / 111320;
-  const lngPad = accuracy / (111320 * Math.cos(lat * Math.PI / 180));
-  return lat - latPad >= zone.south && lat + latPad <= zone.north &&
-         lng - lngPad >= zone.west && lng + lngPad <= zone.east;
+// Ray-casting point-in-polygon against the visitor's live latitude/longitude.
+// Coordinates of the first/last vertex are identical, closing the boundary.
+function pointWithinPusaraAbadi(lat, lng) {
+  let inside = false;
+  for (let i = 0, j = PUSARA_ABADI_BOUNDARY.length - 1;
+       i < PUSARA_ABADI_BOUNDARY.length; j = i++) {
+    const [xi, yi] = PUSARA_ABADI_BOUNDARY[i];
+    const [xj, yj] = PUSARA_ABADI_BOUNDARY[j];
+    if ((yi > lat) !== (yj > lat) &&
+        lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) {
+      inside = !inside;
+    }
+  }
+  return inside;
 }
-function outsideWithAccuracy(zone, lat, lng, accuracy) {
-  const latPad = accuracy / 111320;
-  const lngPad = accuracy / (111320 * Math.cos(lat * Math.PI / 180));
-  return lat + latPad < zone.south || lat - latPad > zone.north ||
-         lng + lngPad < zone.west || lng - lngPad > zone.east;
+
+// Local metre-scale distance to the nearest edge of the polygon.
+// This measures boundary proximity, not distance to any block or access road.
+function distanceToPusaraAbadiBoundaryMetres(lat, lng) {
+  const metresPerLat = 111320;
+  const metresPerLng = metresPerLat * Math.cos(lat * Math.PI / 180);
+  let minimumSquared = Infinity;
+  for (let i = 1; i < PUSARA_ABADI_BOUNDARY.length; i++) {
+    const [lonA, latA] = PUSARA_ABADI_BOUNDARY[i - 1];
+    const [lonB, latB] = PUSARA_ABADI_BOUNDARY[i];
+    const ax = (lonA - lng) * metresPerLng;
+    const ay = (latA - lat) * metresPerLat;
+    const dx = (lonB - lonA) * metresPerLng;
+    const dy = (latB - latA) * metresPerLat;
+    const lengthSquared = dx * dx + dy * dy;
+    const projection = lengthSquared === 0 ? 0 :
+      Math.min(1, Math.max(0, -(ax * dx + ay * dy) / lengthSquared));
+    const nx = ax + projection * dx;
+    const ny = ay + projection * dy;
+    minimumSquared = Math.min(minimumSquared, nx * nx + ny * ny);
+  }
+  return Math.sqrt(minimumSquared);
 }
+
 function classifyPosition(coords) {
   const { latitude: lat, longitude: lng, accuracy } = coords;
   if (!Number.isFinite(lat) || !Number.isFinite(lng) || !Number.isFinite(accuracy) ||
       accuracy < 0 || accuracy > MAX_ACCEPTED_ACCURACY_METRES) return "uncertain";
-  const safeAccuracy = Math.max(accuracy, 15);
-  if (withinWithAccuracy(INNER_ZONE, lat, lng, safeAccuracy)) return "inside";
-  if (outsideWithAccuracy(OUTER_ZONE, lat, lng, safeAccuracy)) return "outside";
-  return "uncertain";
+  // If the phone's accuracy radius touches the provisional boundary,
+  // do not guess: ask the visitor to confirm their starting area.
+  const safetyRadius = Math.max(accuracy, 15);
+  if (distanceToPusaraAbadiBoundaryMetres(lat, lng) <= safetyRadius) return "uncertain";
+  return pointWithinPusaraAbadi(lat, lng) ? "inside" : "outside";
 }
 
 function routeType(destination, startKind) {
